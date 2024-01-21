@@ -1,0 +1,35 @@
+.footer{
+    background-color: black;
+    height:60px;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+
+
+.img{
+    height: 30px;
+}
+.left{
+    flex:1;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.right{
+    flex:1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:10px;
+    margin-right: 3px;
+}
+.icon{
+    color: rgb(155, 130, 130);
+    height: 20px;
+    margin-right: 5px;
+}

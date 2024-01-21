@@ -1,0 +1,8 @@
+*{
+  margin:0;
+  font-family: "Urbanist", sans-serif;
+}
+
+img {
+  pointer-events: none;
+}

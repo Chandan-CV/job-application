@@ -1,0 +1,41 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    border-bottom: 1px solid lightgray;
+    position: sticky;
+    top:0;
+}
+
+.imgcontainer{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+}
+
+.img{
+    height: 80%;
+}
+.left{
+    flex:2;
+    background-color: white;
+}
+
+.right{
+    flex:1;
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(232, 222, 248, 1);
+    width: 20%;
+    border-radius: 20px;
+    padding: 20px;;
+}
