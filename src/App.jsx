@@ -1,35 +1,23 @@
-import React from 'react'
-import Navbar from './assets/components/navbar/navbar.jsx'
-
-import Footer from './assets/components/footer/footer.jsx'
-import Home from './assets/pages/home/home.jsx'
-import './index.css'
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
-import Aboutus from './assets/pages/about-us/Aboutus.jsx'
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Home />}>
-      <Route path="/aboutus" element={<Aboutus />} />
-    </Route>
-  )
-);;
+import Navbar from "./assets/components/navbar/navbar.jsx";
+import Footer from "./assets/components/footer/footer.jsx";
+import Home from "./assets/pages/home/home.jsx";
+import "./index.css";
+import { Routes, Route } from "react-router-dom";
+import Aboutus from "./assets/pages/about-us/Aboutus.jsx";
+import Apply from "./assets/pages/apply/Apply.jsx"
 
 const App = () => {
- 
   return (
     <div>
-    <Navbar/>
-    <RouterProvider router={router}/>
-    <Footer/>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="/apply" element={<Apply />} />
+      </Routes>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
