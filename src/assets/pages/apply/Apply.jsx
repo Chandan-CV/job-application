@@ -13,7 +13,8 @@ const Apply = () => {
                 </span>
                 <span className={styles.line}></span>
             </div>
-           <Page1/>
+            <Page1/>
+            <Page2/>
         </div>
     );
 }
