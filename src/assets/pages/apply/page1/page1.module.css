@@ -1,16 +1,16 @@
 
 .formcontainer{
-    margin-top: 55px;;
-    height: 300px;
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 55px;
+    padding-bottom: 80px;
 }
 
 .label{
     background-color: rgba(232, 222, 248, 1);
     height: 40px;
 }
-
-
 
 .form{
     display: flex;
@@ -19,7 +19,6 @@
     align-items: center;
     height: 100%;
     width: 100%;
-   
     gap: 30px;
 }
 
@@ -36,7 +35,6 @@
     align-items: center;
     justify-content: center;
     box-shadow: 3px 3px 3px #888888;
-    
 }
 
 .input{
@@ -44,19 +42,21 @@
     border-radius: 4px;
     border: none;
     border: 2px solid rgba(103, 80, 164, 1);
+    font-size: 1rem;
 }
 
 .submit{
+    font-size: 1rem;
     display: flex;
     height: 45px;
     width: 274px;
+    margin-top: 40px;
+    margin-bottom: 10px;
     border-radius: 30px;
     background-color:rgba(232, 222, 248, 1);
-    ;
     align-items: center;
     justify-content: center;
     box-shadow: 1px 1px 1px #888888;
-    margin-left: 675px;
 }
 
 .radioinput{
