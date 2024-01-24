@@ -1,8 +1,6 @@
 body{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    
 }
 
 .container{
@@ -17,7 +15,7 @@ body{
 .bar{
     background-color: rgba(232, 227, 227, 1);
     height: 140px;
-    width: 80%;
+    width: 70%;
     align-items: center;
     border-radius: 15px;
     display: flex;
