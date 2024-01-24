@@ -58,3 +58,11 @@
     box-shadow: 1px 1px 1px #888888;
     margin-left: 675px;
 }
+
+.radioinput{
+    width: 207px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
