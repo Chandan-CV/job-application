@@ -1,9 +1,14 @@
+import { useContext } from 'react';
 import styles from './apply.module.css'
 import Page1 from './page1/Page1';
 import Page2 from './page2/Page2';
+import { UserContext } from '../../../App';
 const Apply = () => {
-    return(
-        <div className={styles.container}>
+        const user = useContext(UserContext);
+    if(user){
+
+        return(
+            <div className={styles.container}>
             <div className={styles.bar}>
                 <span>
                 <img  src='/school.svg' className={styles.svg}/>
@@ -17,6 +22,12 @@ const Apply = () => {
             <Page2/>
         </div>
     );
+} 
+return(
+<div>
+    <h1>please login</h1>
+</div>
+);
 }
 
 export default Apply;

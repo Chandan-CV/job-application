@@ -7,9 +7,13 @@ import Aboutus from "./assets/pages/about-us/Aboutus.jsx";
 import Apply from "./assets/pages/apply/Apply.jsx"
 import{auth} from './firebaseConfig.js';
 import {onAuthStateChanged } from 'firebase/auth';
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+
+export const UserContext = createContext();
 
 const App = () => {
+
   const [user, setUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -23,8 +27,9 @@ const App = () => {
     });
   },[]);
   return (
+    <UserContext.Provider value={user}>
     <div>
-      <Navbar user={user} />
+      <Navbar  />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
@@ -32,6 +37,7 @@ const App = () => {
       </Routes>
       <Footer />
     </div>
+    </UserContext.Provider>
   );
 };
 
