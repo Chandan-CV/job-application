@@ -1,7 +1,9 @@
+import { loginwithGoogle, logout } from "../../../firebaseConfig";
 import styles from "./navbar.module.css";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+// eslint-disable-next-line react/prop-types
+const Navbar = ({user}) => {
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>
@@ -17,7 +19,10 @@ const Navbar = () => {
         </span>
         <span className={styles.page}>
           <Link to="/apply">Apply</Link>
-        </span>
+        </span> 
+        <span className={styles.page}>
+          {user? <span onClick={logout}>Logout</span>:<span onClick={loginwithGoogle}>Login</span>}
+          </span>
       </div>
     </div>
   );
