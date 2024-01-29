@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import styles from "./page1.module.css";
 
 const Page1 = () => {
-  const apiUrl = "http://localhost:9191/applyPerson";
-
+  const apiUrl="url"
   const [data, setData] = useState({
     name: "",
     dob: "",
     gender: "",
     phone: "",
     email: "",
+    hsc: "",
+    ssc: "",
+    cgpa: "",
+    skills: "",
   });
 
   const handleInputChange = (field, value) => {
     setData({ ...data, [field]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -31,6 +35,7 @@ const Page1 = () => {
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
+    console.log(data)
   };
 
   const inputFields = [
@@ -38,7 +43,11 @@ const Page1 = () => {
     { label: 'DOB', field: 'dob', type: 'date' },
     { label: 'GENDER', field: 'gender', type: 'radio', options: ['M', 'F'] },
     { label: 'PHONE NO.', field: 'phone', type: 'number' },
-    { label: 'EMAIL ID', field: 'email', type: 'text' }
+    { label: 'EMAIL ID', field: 'email', type: 'text' },
+    { label: '10TH MARKS', field: 'hsc', type: 'number' },
+    { label: '12TH MARKS', field: 'ssc', type: 'number' },
+    { label: 'CGPA Acquired', field: 'cgpa', type: 'number' },
+    { label: 'Skills', field: 'skills', type: 'text' }
   ];
 
   return (
@@ -73,7 +82,7 @@ const Page1 = () => {
         ))}
       </form>
       <button className={styles.submit} onClick={handleSubmit}>
-        Next Page
+        Save Details 
       </button>
     </div>
   );
