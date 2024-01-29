@@ -5,7 +5,7 @@ import Page2 from './page2/Page2';
 import { UserContext } from '../../../App';
 const Apply = () => {
         const user = useContext(UserContext);
-    if(user){
+    if(1){
 
         return(
             <div className={styles.container}>
@@ -24,9 +24,8 @@ const Apply = () => {
     );
 } 
 return(
-<div>
-    <h1>please login</h1>
-</div>
+<card className={styles.login}>Pls LOGIN
+</card>
 );
 }
 

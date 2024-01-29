@@ -33,69 +33,44 @@ const Page1 = () => {
       });
   };
 
+  const inputFields = [
+    { label: 'NAME', field: 'name', type: 'text' },
+    { label: 'DOB', field: 'dob', type: 'date' },
+    { label: 'GENDER', field: 'gender', type: 'radio', options: ['M', 'F'] },
+    { label: 'PHONE NO.', field: 'phone', type: 'number' },
+    { label: 'EMAIL ID', field: 'email', type: 'text' }
+  ];
+
   return (
     <div className={styles.formcontainer}>
       <form className={styles.form}>
-        <div className={styles.inputcontain}>
-          <label className={styles.label}> NAME </label>
-          <input
-            className={styles.input}
-            value={data.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-          />
-        </div>
-        <div className={styles.inputcontain}>
-          <label className={styles.label}>DOB</label>
-          <input
-            className={styles.input}
-            type="date"
-            value={data.date}
-            onChange={(e) => handleInputChange("dob", e.target.value)}
-          />
-        </div>
-        <div className={styles.inputcontain}>
-          <label className={styles.label}>GENDER</label>
-          <span className={styles.radioinput}>
-            <input
-              id="M"
-              type="radio"
-              value="M"
-              checked={data.gender === "M"}
-              onChange={() => handleInputChange("gender", "M")}
-            />
-
-            <label htmlFor="M"> Male</label>
-          </span>
-          <span className={styles.radioinput}>
-            <input
-              id="F"
-              type="radio"
-              value="F"
-              checked={data.gender === "F"}
-              onChange={() => handleInputChange("gender", "F")}
-            />
-            <label htmlFor="F"> Female</label>
-          </span>
-        </div>
-        <div className={styles.inputcontain}>
-          <label className={styles.label}>PHONE NO.</label>
-          <input
-            className={styles.input}
-            type="number"
-            placeholder="Enter Your No."
-            value={data.phone}
-            onChange={(e) => handleInputChange("phone", e.target.value)}
-          />
-        </div>
-        <div className={styles.inputcontain}>
-          <label className={styles.label}>EMAIL ID</label>
-          <input
-            className={styles.input}
-            placeholder="Enter your email id"
-            value={data.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-          />
-        </div>
+        {inputFields.map((field, index) => (
+          <div key={index} className={styles.inputcontain}>
+            <label className={styles.label}>{field.label}</label>
+            {field.type === 'radio' ? (
+              field.options.map((option, idx) => (
+                <span key={idx} className={styles.radioinput}>
+                  <input
+                    id={option}
+                    type="radio"
+                    value={option}
+                    checked={data[field.field] === option}
+                    onChange={() => handleInputChange(field.field, option)}
+                  />
+                  <label htmlFor={option}>{option}</label>
+                </span>
+              ))
+            ) : (
+              <input
+                className={styles.input}
+                type={field.type}
+                placeholder={`Enter your ${field.label}`}
+                value={data[field.field]}
+                onChange={(e) => handleInputChange(field.field, e.target.value)}
+              />
+            )}
+          </div>
+        ))}
       </form>
       <button className={styles.submit} onClick={handleSubmit}>
         Next Page
