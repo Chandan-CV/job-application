@@ -1,0 +1,59 @@
+.container{
+    background-color: rgba(137, 125, 125, 0.79);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 55px;
+    padding: 70px;
+    color: rgb(255, 255, 255);
+    gap:20px;
+    font-size: 1.5rem;
+    border-radius: 9px;
+
+}
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #ccc;
+    position: relative;
+}
+
+.tick {
+    display: inline-block;
+    width: 40px;
+    height: 40px;  
+    position: absolute;
+    left:24px;
+  }
+
+  .tick::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50%;
+    width: 3px;
+    background-color:rgba(31, 183, 92, 1);
+    content: "";
+    transform: translateX(2px) rotate(-45deg);
+    transform-origin: left bottom;
+    
+    
+  }
+
+
+.tick::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: rgba(31, 183, 92, 1);
+    content: "";
+    transform: translateX(2px) rotate(-45deg);
+    transform-origin: left bottom;
+}

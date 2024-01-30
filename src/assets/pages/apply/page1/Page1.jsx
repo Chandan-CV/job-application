@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import styles from "./page1.module.css";
 import { UserContext } from "../../../../App";
+import Success from "../../../components/Success/Success";
 
 const Page1 = () => {
   const apiUrl = "http://localhost:9191/user/addDetails/";
@@ -20,21 +21,19 @@ const Page1 = () => {
   });
 
   const [file, setFile] = useState("");
+  const [submitted, setSubmitted] = useState(false); // New state for tracking form submission
 
   const handleInputChange = (field, value) => {
-   
-      setData({ ...data, [field]: value })
-      
-  
+    setData({ ...data, [field]: value });
   };
 
   const handleFile = (event) => {
     setFile(event.target.files[0]);
-    const f= document.getElementById("chode")
-    f.innerText=event.target.files[0].name
+    const f = document.getElementById("resume-title");
+    f.innerText = event.target.files[0].name;
   };
 
-  const HandleUpload = async () => {
+  const handleUpload = async () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -69,7 +68,7 @@ const Page1 = () => {
     e.preventDefault();
     try {
       await textSubmit();
-      await HandleUpload();
+      await handleUpload();
 
       const phoneNo = data.phone;
 
@@ -95,7 +94,7 @@ const Page1 = () => {
       };
 
       sendSMS();
-      alert("Form Submitted Successfully");
+      setSubmitted(true); // Mark the form as submitted
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +110,10 @@ const Page1 = () => {
     { label: "CGPA Acquired", field: "collegeCgpa", type: "number" },
     { label: "College Name", field: "collegeName", type: "text" },
   ];
+
+  if (submitted) {
+    return <Success/> 
+  }
 
   return (
     <div className={styles.formcontainer}>
@@ -142,23 +145,22 @@ const Page1 = () => {
             )}
           </div>
         ))}
-<div className={styles.inputcontain}>
-  <label className={styles.label}>Resume</label>
-  <div className={styles.fileInputContainer}>
-    <label htmlFor="resumeUpload" className={styles.fileInputLabel}>
-      Choose a file
-    </label>
-    <input
-      id="resumeUpload"
-      type="file"
-      accept=".pdf, .doc, .docx"
-      onChange={handleFile}
-      className={styles.fileInput}
-    />
-     <h5 id="chode" 
-  ></h5>
-  </div>
-</div>
+        <div className={styles.inputcontain}>
+          <label className={styles.label}>Resume</label>
+          <div className={styles.fileInputContainer}>
+            <label htmlFor="resumeUpload" className={styles.fileInputLabel}>
+              Choose a file
+            </label>
+            <input
+              id="resumeUpload"
+              type="file"
+              accept=".pdf, .doc, .docx"
+              onChange={handleFile}
+              className={styles.fileInput}
+            />
+            <p id="resume-title"></p>
+          </div>
+        </div>
 
         <button type="submit" className={styles.submit}>
           Save Details & Upload Resume
