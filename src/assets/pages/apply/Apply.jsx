@@ -25,7 +25,7 @@ const Apply = () => {
     );
 } 
 return(
-<card className={styles.login}>Pls LOGIN
+<card className={styles.login}>Please Login
 </card>
 );
 }

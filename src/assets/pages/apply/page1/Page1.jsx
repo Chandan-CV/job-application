@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./page1.module.css";
+import { UserContext } from "../../../../App";
 
 const Page1 = () => {
-  const apiUrl="url"
+  const apiUrl = "http://localhost:9191/user/addDetails/";
+  const userEmail = useContext(UserContext).email;
   const [data, setData] = useState({
     name: "",
     dob: "",
     gender: "",
     phone: "",
-    email: "",
-    hsc: "",
-    ssc: "",
-    cgpa: "",
-    skills: "",
+    tenthBoardPercent: "",
+    twelfthBoardPercent: "",
+    collegeCgpa: "",
+    collegeName: "",
   });
 
   const handleInputChange = (field, value) => {
@@ -21,7 +22,7 @@ const Page1 = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(apiUrl, {
+    fetch(apiUrl+userEmail, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,19 +36,18 @@ const Page1 = () => {
       .catch((error) => {
         console.error("Error submitting form:", error);
       });
-    console.log(data)
+    console.log(data);
   };
 
   const inputFields = [
-    { label: 'NAME', field: 'name', type: 'text' },
-    { label: 'DOB', field: 'dob', type: 'date' },
-    { label: 'GENDER', field: 'gender', type: 'radio', options: ['M', 'F'] },
-    { label: 'PHONE NO.', field: 'phone', type: 'number' },
-    { label: 'EMAIL ID', field: 'email', type: 'text' },
-    { label: '10TH MARKS', field: 'hsc', type: 'number' },
-    { label: '12TH MARKS', field: 'ssc', type: 'number' },
-    { label: 'CGPA Acquired', field: 'cgpa', type: 'number' },
-    { label: 'Skills', field: 'skills', type: 'text' }
+    { label: "NAME", field: "name", type: "text" },
+    { label: "DOB", field: "dob", type: "date" },
+    { label: "GENDER", field: "gender", type: "radio", options: ["M", "F"] },
+    { label: "PHONE NO.", field: "phone", type: "number" },
+    { label: "10TH MARKS", field: "tenthBoardPercent", type: "number" },
+    { label: "12TH MARKS", field: "twelfthBoardPercent", type: "number" },
+    { label: "CGPA Acquired", field: "collegeCgpa", type: "number" },
+    { label: "College Name", field: "collegeName", type: "text" },
   ];
 
   return (
@@ -56,7 +56,7 @@ const Page1 = () => {
         {inputFields.map((field, index) => (
           <div key={index} className={styles.inputcontain}>
             <label className={styles.label}>{field.label}</label>
-            {field.type === 'radio' ? (
+            {field.type === "radio" ? (
               field.options.map((option, idx) => (
                 <span key={idx} className={styles.radioinput}>
                   <input
@@ -82,7 +82,7 @@ const Page1 = () => {
         ))}
       </form>
       <button className={styles.submit} onClick={handleSubmit}>
-        Save Details 
+        Save Details
       </button>
     </div>
   );
