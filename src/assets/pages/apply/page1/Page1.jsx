@@ -5,6 +5,7 @@ import { UserContext } from "../../../../App";
 const Page1 = () => {
   const apiUrl = "http://localhost:9191/user/addDetails/";
   const fileUrl = "http://localhost:9191/user/upload/";
+  const smsUrl = "http://localhost:9191/processSMS";
   const userEmail = useContext(UserContext).email;
 
   const [data, setData] = useState({
@@ -64,6 +65,32 @@ const Page1 = () => {
     try {
       await textSubmit();
       await HandleUpload();
+
+      const phoneNo = data.phone;
+
+      const smsRequest = {
+        destinationSMSNumber: phoneNo,
+        smsMessage: "Form submitted successfully!",
+      };
+
+      const sendSMS = async () => {
+        try {
+          const response = await fetch(smsUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(smsRequest),
+          });
+          const result = await response.json();
+          console.log(result);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+      };
+
+      sendSMS();
+      alert("Form Submitted Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +100,7 @@ const Page1 = () => {
     { label: "NAME", field: "name", type: "text" },
     { label: "DOB", field: "dob", type: "date" },
     { label: "GENDER", field: "gender", type: "radio", options: ["M", "F"] },
-    { label: "PHONE NO.", field: "phone", type: "number" },
+    { label: "PHONE NO.", field: "phone", type: "text" },
     { label: "10TH MARKS", field: "tenthBoardPercent", type: "number" },
     { label: "12TH MARKS", field: "twelfthBoardPercent", type: "number" },
     { label: "CGPA Acquired", field: "collegeCgpa", type: "number" },
@@ -110,12 +137,22 @@ const Page1 = () => {
             )}
           </div>
         ))}
-        <div className={styles.inputcontain}>
-          <label className={styles.label}>Resume</label>
-          <div className={styles.file}>
-            <input type="file" onChange={handleFile} />
-          </div>
-        </div>
+<div className={styles.inputcontain}>
+  <label className={styles.label}>Resume</label>
+  <div className={styles.fileInputContainer}>
+    <label htmlFor="resumeUpload" className={styles.fileInputLabel}>
+      Choose a file
+    </label>
+    <input
+      id="resumeUpload"
+      type="file"
+      accept=".pdf, .doc, .docx"
+      onChange={handleFile}
+      className={styles.fileInput}
+    />
+  </div>
+</div>
+
         <button type="submit" className={styles.submit}>
           Save Details & Upload Resume
         </button>
