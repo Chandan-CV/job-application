@@ -22,11 +22,16 @@ const Page1 = () => {
   const [file, setFile] = useState("");
 
   const handleInputChange = (field, value) => {
-    setData({ ...data, [field]: value });
+   
+      setData({ ...data, [field]: value })
+      
+  
   };
 
   const handleFile = (event) => {
     setFile(event.target.files[0]);
+    const f= document.getElementById("chode")
+    f.innerText=event.target.files[0].name
   };
 
   const HandleUpload = async () => {
@@ -150,6 +155,8 @@ const Page1 = () => {
       onChange={handleFile}
       className={styles.fileInput}
     />
+     <h5 id="chode" 
+  ></h5>
   </div>
 </div>
 

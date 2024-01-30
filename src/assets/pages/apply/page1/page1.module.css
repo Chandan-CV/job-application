@@ -19,6 +19,7 @@
     height: 100%;
     width: 100%;
     gap: 30px;
+    font-size: 1rem;
 }
 
 .inputcontain {
@@ -63,6 +64,11 @@
     border: none;
     border: 2px solid rgba(103, 80, 164, 1);
     font-size: 1rem;
+    padding: 10px;
+}
+
+.fileName {
+    margin-top: 8px;
 }
 
 .submit {
