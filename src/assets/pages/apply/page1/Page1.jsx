@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./page1.module.css";
 import { UserContext } from "../../../../App";
 
 const Page1 = () => {
   const apiUrl = "http://localhost:9191/user/addDetails/";
+  const fileUrl = "http://localhost:9191/user/upload/";
   const userEmail = useContext(UserContext).email;
+
   const [data, setData] = useState({
     name: "",
     dob: "",
@@ -16,27 +18,55 @@ const Page1 = () => {
     collegeName: "",
   });
 
+  const [file, setFile] = useState("");
+
   const handleInputChange = (field, value) => {
     setData({ ...data, [field]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch(apiUrl+userEmail, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Form submitted successfully:", result);
-      })
-      .catch((error) => {
-        console.error("Error submitting form:", error);
+  const handleFile = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const HandleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch(fileUrl + userEmail, {
+        method: "POST",
+        body: formData,
       });
-    console.log(data);
+      const result = await response.json();
+      console.log("File uploaded successfully:", result);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
+  const textSubmit = async () => {
+    try {
+      const response = await fetch(apiUrl + userEmail, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log("Form submitted successfully:", result);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await textSubmit();
+      await HandleUpload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const inputFields = [
@@ -52,7 +82,7 @@ const Page1 = () => {
 
   return (
     <div className={styles.formcontainer}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         {inputFields.map((field, index) => (
           <div key={index} className={styles.inputcontain}>
             <label className={styles.label}>{field.label}</label>
@@ -80,10 +110,16 @@ const Page1 = () => {
             )}
           </div>
         ))}
+        <div className={styles.inputcontain}>
+          <label className={styles.label}>Resume</label>
+          <div className={styles.file}>
+            <input type="file" onChange={handleFile} />
+          </div>
+        </div>
+        <button type="submit" className={styles.submit}>
+          Save Details & Upload Resume
+        </button>
       </form>
-      <button className={styles.submit} onClick={handleSubmit}>
-        Save Details
-      </button>
     </div>
   );
 };

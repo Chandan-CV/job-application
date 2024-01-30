@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import styles from './apply.module.css'
 import Page1 from './page1/Page1';
-
-import Page3 from './Upload/Page3';
 import { UserContext } from '../../../App';
 const Apply = () => {
         const user = useContext(UserContext);
@@ -20,7 +18,6 @@ const Apply = () => {
                 <span className={styles.line}></span>
             </div>
             <Page1  />
-            <Page3/>
         </div>
     );
 } 
