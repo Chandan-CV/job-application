@@ -25,6 +25,8 @@ const loginwithGoogle =()=>{
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
+    const userEmail = user.email;
+    registerUser(userEmail);
     console.log(token,user)
 
   }).catch((error) => {
@@ -34,6 +36,21 @@ const loginwithGoogle =()=>{
     const credential = GoogleAuthProvider.credentialFromError(error);
     console.log(errorCode,errorMessage,email,credential)
   });
+}
+
+const registerUser = (userEmail) => {
+  const apiUrl = "http://localhost:9191/user/register";
+
+  const requestData = {
+    email: userEmail,
+  }
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestData),
+  })
 }
 
 const logout =()=>{
