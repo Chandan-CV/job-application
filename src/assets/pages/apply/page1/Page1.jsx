@@ -24,20 +24,20 @@ const Page1 = () => {
   const [file, setFile] = useState("");
   const [submitted, setSubmitted] = useState(false); // New state for tracking form submission
 
-  const fetchUserData = async () => {
-    try {
-      const response = await fetch(getInfoUrl);
-      const userData = await response.json();
-
-      // Update the state with existing user data
-      setData(userData);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchUserData();
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(getInfoUrl);
+        const userData = await response.json();
+  
+        // Update the state with existing user data
+        setData(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+  
+    fetchUserData(); // Call the function directly without adding it to the dependency array
   }, [getInfoUrl, userEmail]);
 
   const handleInputChange = (field, value) => {
@@ -58,7 +58,6 @@ const Page1 = () => {
 
   const handleUpload = async () => {
     try {
-      await fetchUserData();
       const formData = new FormData();
       formData.append("file", file);
       const response = await fetch(fileUrl + userEmail, {
@@ -91,6 +90,18 @@ const Page1 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Check for null values and update numeric fields to null if 0
+      const sanitizedData = { ...data };
+      // Check if any value is 0 and set the entire data object to null
+      if (
+        Object.values(sanitizedData).includes(0) ||
+        Object.values(sanitizedData).includes("0")
+      ) {
+        console.error("Please fill in all required fields.");
+        return;
+      }
+
+      // Proceed with submission
       await textSubmit();
       await handleUpload();
 
