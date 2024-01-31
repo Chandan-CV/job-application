@@ -43,6 +43,8 @@
 .fileInputContainer {
     display: flex;
     align-items: center;
+    width: 460px;
+    justify-content: center;
 }
 
 .fileInputLabel {
@@ -51,7 +53,7 @@
     background-color: #3498db;
     color: #fff;
     border-radius: 4px;
-    margin-right: 10rem;
+    margin-right: 1rem;
 }
 
 .fileInput {

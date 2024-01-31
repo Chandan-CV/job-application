@@ -1,13 +1,14 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import styles from "./page1.module.css";
 import { UserContext } from "../../../../App";
 import Success from "../../../components/Success/Success";
 
 const Page1 = () => {
+  const userEmail = useContext(UserContext).email;
   const apiUrl = "http://localhost:9191/user/addDetails/";
   const fileUrl = "http://localhost:9191/user/upload/";
   const smsUrl = "http://localhost:9191/processSMS";
-  const userEmail = useContext(UserContext).email;
+  const getInfoUrl = "http://localhost:9191/user/getUserInfo/" + userEmail;
 
   const [data, setData] = useState({
     name: "",
@@ -23,9 +24,31 @@ const Page1 = () => {
   const [file, setFile] = useState("");
   const [submitted, setSubmitted] = useState(false); // New state for tracking form submission
 
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(getInfoUrl);
+      const userData = await response.json();
+
+      // Update the state with existing user data
+      setData(userData);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, [getInfoUrl, userEmail]);
+
   const handleInputChange = (field, value) => {
     setData({ ...data, [field]: value });
   };
+
+  const resumeLink = data.resumeUrl ? (
+    <a href={data.resumeUrl} target="_blank" rel="noopener noreferrer">
+      View Uploaded Resume
+    </a>
+  ) : null;
 
   const handleFile = (event) => {
     setFile(event.target.files[0]);
@@ -35,6 +58,7 @@ const Page1 = () => {
 
   const handleUpload = async () => {
     try {
+      await fetchUserData();
       const formData = new FormData();
       formData.append("file", file);
       const response = await fetch(fileUrl + userEmail, {
@@ -112,7 +136,7 @@ const Page1 = () => {
   ];
 
   if (submitted) {
-    return <Success/> 
+    return <Success />;
   }
 
   return (
@@ -158,7 +182,8 @@ const Page1 = () => {
               onChange={handleFile}
               className={styles.fileInput}
             />
-            <p id="resume-title"></p>
+            <p id="resume-title" className={styles.resumetitle}></p>
+            {resumeLink}
           </div>
         </div>
 
