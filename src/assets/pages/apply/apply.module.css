@@ -1,9 +1,9 @@
-body{
+body {
     display: flex;
     flex-direction: column;
 }
 
-.container{
+.container {
     display: flex;
     flex: 1;
     justify-content: center;
@@ -12,7 +12,7 @@ body{
     flex-direction: column;
 }
 
-.bar{
+.bar {
     background-color: rgba(232, 227, 227, 1);
     height: 140px;
     width: 70%;
@@ -20,28 +20,51 @@ body{
     border-radius: 15px;
     display: flex;
     flex-direction: row;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     position: relative;
 }
 
-.svg{
-    height:85px ;
+.svg {
+    height: 85px;
     border-radius: 50%;
 }
 
-.line{
+.line {
     height: 3px;
     width: 29.5%;
     background-color: black;
-    position:absolute;
+    position: absolute;
     left: 35%;
 }
 
-
-.login{
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60vh;
     font-size: 2.5rem;
+}
+
+/* Media query for screens 600px or less */
+@media (max-width: 600px) {
+    .container {
+        margin-top: 10px; /* Adjust margin top */
+    }
+    
+    .bar {
+        width: 90%; /* Adjust width */
+    }
+    
+    .svg {
+        height: 65px; /* Adjust SVG height */
+    }
+    
+    .line {
+        width: 25%; /* Adjust line width */
+        left: 37.5%; /* Adjust line position */
+    }
+    
+    .login {
+        font-size: 2rem; /* Adjust font size */
+    }
 }
