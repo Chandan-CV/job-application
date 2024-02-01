@@ -123,13 +123,14 @@ const Page1 = () => {
           });
           const result = await response.json();
           console.log(result);
+          setSubmitted(true); 
         } catch (error) {
           console.error("Error submitting form:", error);
         }
       };
 
       sendSMS();
-      setSubmitted(true); // Mark the form as submitted
+      // Mark the form as submitted
     } catch (error) {
       console.log(error);
     }
