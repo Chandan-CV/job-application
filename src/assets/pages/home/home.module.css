@@ -1,5 +1,5 @@
 .background {
-    height: 80vh;
+    height: 76vh;
     overflow: hidden;
 }
 
@@ -8,4 +8,10 @@
     height: 100%;
     object-fit: cover;
     object-position: top center;
+}
+
+@media only screen and (max-width: 600px) {
+    .background {
+        height: 85vh;
+    }
 }

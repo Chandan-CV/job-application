@@ -6,11 +6,6 @@
     padding-bottom: 80px;
 }
 
-.label {
-    background-color: rgba(232, 222, 248, 1);
-    height: 40px;
-}
-
 .form {
     display: flex;
     flex-direction: column;
@@ -18,6 +13,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    max-width: 400px;
     gap: 30px;
     font-size: 1rem;
 }
@@ -25,7 +21,7 @@
 .inputcontain {
     display: flex;
     gap: 30px;
-    width: 100%;
+    width: 65vw;
     justify-content: space-between;
     align-items: center;
 }
@@ -38,6 +34,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 3px 3px 3px #888888;
+    background-color: rgba(232, 222, 248, 1);
 }
 
 .fileInputContainer {
@@ -95,98 +92,43 @@
     gap: 20px;
 }
 
-
 @media only screen and (max-width: 600px) {
     .formcontainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 55px;
-        padding-bottom: 80px;
+        margin-top: 1.2rem;
+        width: 90vw;
+        padding-bottom: 2rem;
     }
-    
-    .label {
-        background-color: rgba(232, 222, 248, 1);
-        height: 40px;
-    }
-    
-    .form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        gap: 10px;
-        font-size: 0.5rem;
-    }
-    
+
     .inputcontain {
-        display: flex;
-        gap: 30px;
-        width: 80%;
-        justify-content: center;
-        align-items: center;
+        width: 100%;
     }
-    
+
     .label {
-        display: flex;
-        height: 20px;
-        width: 20%;
-        border-radius: 10px;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 3px 3px 3px #888888;
+        font-size: 0.8rem;
+        height: 1.2rem;
+        width: 3rem;
+        padding: 0.5rem;
     }
-    
-    .fileInputContainer {
-        display: flex;
-        align-items: center;
-        width: 400px;
-        justify-content: center;
-    }
-    
-    
-    
-    .fileInput {
-        display: none;
-    }
-    
+
     .input {
-        width: 40%;
-        border-radius: 4px;
-        border: none;
-        border: 2px solid rgba(103, 80, 164, 1);
-        font-size: 1rem;
-        padding: 10px;
+        width: 55vw;
+        font-size: 0.8rem;
     }
-    
-    .fileName {
-        margin-top: 8px;
-    }
-    
+
     .submit {
-        font-size: 1rem;
-        display: flex;
-        height: 45px;
-        width: 274px;
-        margin-top: 40px;
-        margin-bottom: 10px;
-        border-radius: 30px;
-        background-color: rgba(232, 222, 248, 1);
-        align-items: center;
-        justify-content: center;
-        box-shadow: 1px 1px 1px #888888;
+        font-size: 0.8rem;
+        width: 50vw;
+        height: 2.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
-    
-    .radioinput {
-        width: 19%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
+
+    .fileInputLabel {
+        font-size: 0.8rem;
     }
-    
- 
-    
+
+    .resumetitle {
+        font-size: 0.8rem;
+    }
 }
