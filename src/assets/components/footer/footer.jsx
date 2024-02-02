@@ -4,14 +4,16 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.left}>
-        <span className={styles.contact}>
+        <div className={styles.contact}>
+          <div className={styles.contactinfo}>
           <img src="phone.svg" className={styles.icon} />
           <span>+91 87963759562</span>
-        </span>
-        <span className={styles.contact}>
+          </div>
+          <div className={styles.contactinfo}>
           <img src="contact.svg" className={styles.icon} />
           <span>xyz@gmail.com</span>
-        </span>
+          </div>
+        </div>
       </div>
       <div className={styles.right}>
         <a href="">

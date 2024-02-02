@@ -5,9 +5,15 @@
     align-items: center;
     margin-top: 2rem;
     justify-content: center;
+    margin-bottom: 4rem;
 }
 
-.bottom, .top {
+.top {
+    margin-bottom: 1rem;
+}
+
+.bottom,
+.top {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -16,7 +22,7 @@
 }
 
 .image {
-    height: 32vh;
+    height: 12rem;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -37,10 +43,15 @@ p {
 
 @media only screen and (max-width: 600px) {
 
-    .container{
-        gap:30px;
+    .container {
+        gap: 30px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 1rem;
     }
-    .bottom, .top {
+
+    .bottom,
+    .top {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -48,25 +59,21 @@ p {
         justify-content: center;
     }
 
-    .bottom{
+    .bottom {
         flex-direction: column-reverse;
     }
 
     .image {
         height: 25vh;
-
     }
-    
-p {
-    max-width: 15rem;
-    max-width: 15rem;
-    text-align: justify;
-}
-.righttext,
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .righttext,
     .lefttext {
-        margin: 0; 
+        margin: 0 0 0 0;
         margin-top: 10px;
     }
-
-    
 }
